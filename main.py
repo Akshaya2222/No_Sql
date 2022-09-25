@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import pymongo
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+DEFAULT_CONNECTION_URL = "mongodb://localhost:27017"
+DB_NAME = "pybron_1"
+client = pymongo.MongoClient(DEFAULT_CONNECTION_URL)
 
+database = client['DB_NAME']
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+record = {
+    'company_name': "pybron",
+    "product": "Affordable_ML",
+    'course_offered': "MACHINE learning for Data Scientiest",
+    "trainer_name": "rajesh"
 
+}
+collection_name = "pybron_product"
+collection = database[collection_name]
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+collection.insert_one(record)
